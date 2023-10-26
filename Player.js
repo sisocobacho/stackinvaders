@@ -8,9 +8,13 @@ class Player {
         this.isMovingUp = false;
         this.isMovingDown = false;
         this.bullets = [];
+        this.lives = 3;
+        this.maxBullets = 2;
+        this.score = 0;
+
     }
     update() {
-        if (this.isMovingRight && this.x < width) {
+        if (this.isMovingRight && this.x < width -40) {
             this.x += 1;
         } else if (this.isMovingLeft && this.x > 0) {
             this.x -= 1;
@@ -21,18 +25,17 @@ class Player {
         } else if(this.isMovingDown && this.y < height - 30){
             this.y += 1;
         }
-
-        this.constrain();
         this.updateBullets();
     }
     updateBullets() {
-        
         for (let i = this.bullets.length - 1; i >= 0; i--) {
             this.bullets[i].update();
             if (this.hasHitAlien(this.bullets[i])) {
                 this.bullets.splice(i, 1);
+                this.score += 100;
                 break;
             } else if (this.bullets[i].isOffScreen()) {
+                // console.log("offscreen")
                 this.bullets.splice(i, 1);
                 break;
             }
@@ -40,13 +43,6 @@ class Player {
     }
     hasHitAlien(bullet) {
         return invaders.checkCollision(bullet.x, bullet.y);
-    }
-    constrain() {
-        if (this.x <= 0) {
-            this.x = 0;
-        } else if(this.x > width - 23) {
-            this.x = width - 23;
-        }
     }
     draw() {
         image(this.image, this.x, this.y, this.image.width / 20, this.image.height/20);
@@ -90,6 +86,29 @@ class Player {
     }
 
     shoot() {
-        this.bullets.push(new PlayerBullet(this.x + 12, this.y));
+        if (this.bullets.length < this.maxBullets){
+            this.bullets.push(new PlayerBullet(this.x + 12, this.y, this.playerIsUp()));
+        }
+        
+    }
+
+    respawn() {
+        this.x = width / 2;
+        this.y = height -30;
+        this.isMovingLeft = false;
+        this.isMovingRight = false;
+        this.isMovingUp = false;
+        this.isMovingDown = false;
+        this.lives -= 1;
+    }
+    playerIsUp(){
+        return this.y > invaders.y;
+    }
+    loseLive(){
+        if(this.lives > 0){
+            background(255);
+            this.respawn();
+            background(0);
+        }
     }
 }

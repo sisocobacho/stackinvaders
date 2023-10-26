@@ -13,12 +13,15 @@ class Invaders {
       	// to make sure the aliens dont spam
         this.timeSinceLastBullet = 0;
     }
-    update() {
+    update(player) {
         for (let alien of this.aliens) {
             if (this.direction == 0) {
                 alien.x+= this.speed;
             } else if (this.direction == 1) {
                 alien.x-= this.speed;
+            }
+            if (alien.hasHitPlayer(player)){
+                player.loseLive();
             }
         }
    
@@ -40,7 +43,7 @@ class Invaders {
       
       
       // to move the bullets
-      this.updateBullets();
+      this.updateBullets(player);
         
     }
   
@@ -58,7 +61,7 @@ class Invaders {
     }
     moveAlienDown() {
         for (let alien of this.aliens) {
-            console.log(alien.y, alien.x, "moving", height, alien.y >= height -30)
+            // console.log(alien.y, alien.x, "moving", height, alien.y >= height -30)
             if(this.movingDown){
                 alien.y += 10;
                 if(alien.y >= height -30){
@@ -121,6 +124,7 @@ class Invaders {
       
     	// draw the bullets first so they're underneath
       for (let bullet of this.bullets) {
+          fill('#f30000')
           rect(bullet.x, bullet.y,  3, 10);
       }
       
@@ -151,9 +155,12 @@ class Invaders {
       this.timeSinceLastBullet = 0;
     }
   
-     updateBullets() {
+     updateBullets(player) {
         for (let i = this.bullets.length - 1; i >= 0; i-- ) {
             this.bullets[i].y  += 2;
+            if(this.bullets[i].hasHitPlayer(player)){
+                player.loseLive();
+            }
         }
     }
 }

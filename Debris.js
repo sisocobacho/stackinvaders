@@ -46,13 +46,14 @@ class Debris {
     }
     
     display() {
-        fill(random(255, 0), random(255, 0), random(255,0));
+        fill(100);
         noStroke();
         ellipse(this.x, this.y, this.r * 2, this.r * 2);
     }
     
-    hasHitShip(ship) {
-        if (dist(this.x, this.y, ship.x, ship.y) < this.r + ship.r) {
+    hasHitPlayer(player) {
+      // console.log("hit player", dist(this.x, this.y, player.x, player.y), this.r + 10)
+        if (dist(this.x, this.y, player.x, player.y) < this.r + 10) {
           return true;
       }
       return false

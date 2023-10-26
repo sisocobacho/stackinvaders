@@ -5,11 +5,11 @@ let player;
 let allDebris = [];
 
 // how hard do you want to make it? :D
-const NUM_DEBRIS = 50;
+const NUM_DEBRIS = 30;
 
 function preload() {
   alienImage = loadImage("invader1.png");
-  shooterImage = loadImage("invader1.png");
+  shooterImage = loadImage('invader1.png');
 }
 
 function setup() {
@@ -22,30 +22,49 @@ function setup() {
 
   // create the debris objects
   for (let i = 0; i < NUM_DEBRIS; i++) {
-    allDebris.push(new Debris());
+    if(allDebris.length < NUM_DEBRIS){
+      allDebris.push(new Debris());
+    }
   }
+
+
+}
+
+function gameOver(){
+  createCanvas(720, 400);
+  background(0);
+  noStroke();
+  rectMode(CENTER);
+  // fill(0);
+  text("GAME OVER", width/2, height/2);
+  player.drawScore();
 }
 
 function draw() {
   background(0);
-  updateDebrisAndCheckCollisions();
- 
-  invaders.update(player);
-  invaders.draw();
-
   player.update();
   player.draw();
   player.drawScore();
+  player.drawLives();
+
+  updateDebrisAndCheckCollisions();
+  invaders.update(player);
+
+  invaders.draw();
+
+  
 
   if (player.lives == 0) {
-    setup();
+    gameOver();
   }
   
 
 }
 
 function mousePressed() {
-  console.log(mouseX, mouseY);
+  setup();
+  player.lives = 3;
+  
 }
 
 function keyPressed() {
@@ -66,11 +85,14 @@ function keyPressed() {
 
 function updateDebrisAndCheckCollisions() {
     for (let i = 0; i < allDebris.length; i++) {
-      allDebris[i].update();
+        allDebris[i].update();
         allDebris[i].display();
       
-      if (allDebris[i].hasHitShip(player)) {
-          player.respawn();
+      if (allDebris[i].hasHitPlayer(player)) {
+          console.log("hit player")
+          allDebris.splice(i, 0);
+          player.loseLive();
+          break;
       } 
     }
   }
