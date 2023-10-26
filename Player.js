@@ -66,6 +66,7 @@ class Player {
         }
     }
     drawScore() {
+        fill(255)
         text("SCORE", 50, 25);
         push();
         fill(100, 255, 100);

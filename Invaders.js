@@ -7,7 +7,6 @@ class Invaders {
         this.aliens = this.initialiseAliens();
         this.bullets = [];
         this.movingDown = true;
-        this.movingUp = false;
     
         this.speed = 0.2;
       
@@ -59,8 +58,18 @@ class Invaders {
     }
     moveAlienDown() {
         for (let alien of this.aliens) {
-            
-            alien.y += 10;
+            console.log(alien.y, alien.x, "moving", height, alien.y >= height -30)
+            if(this.movingDown){
+                alien.y += 10;
+                if(alien.y >= height -30){
+                    this.movingDown = false;
+                }
+            } else {
+                alien.y -= 10;
+                if(alien.y <= 0){
+                    this.movingDown = true;
+                }
+            }
             
         }
     }

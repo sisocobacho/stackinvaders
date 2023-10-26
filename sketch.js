@@ -35,6 +35,7 @@ function draw() {
 
   player.update();
   player.draw();
+  player.drawScore();
 
   if (player.lives == 0) {
     setup();
@@ -44,7 +45,7 @@ function draw() {
 }
 
 function mousePressed() {
-  invaders.checkCollision(mouseX, mouseY);
+  console.log(mouseX, mouseY);
 }
 
 function keyPressed() {
