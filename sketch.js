@@ -3,6 +3,8 @@ let invaders;
 let shooterImage;
 let player;
 let allDebris = [];
+let gameOver = false;
+let canvas;
 
 // how hard do you want to make it? :D
 const NUM_DEBRIS = 30;
@@ -17,9 +19,11 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(720, 400);
-  noStroke();
-  rectMode(CENTER);
+  canvas = createCanvas(720,400);
+  canvas.style('display', 'block');
+  // noStroke();
+  // rectMode(CENTER);
+  canvas.parent('sketch-holder');
   // createCanvas(window.innerWidth * 0.9, window.innerHeight * 0.9);
   invaders = new Invaders(alienImage, 4);
   player = new Player(shooterImage);
@@ -34,12 +38,13 @@ function setup() {
 
 }
 
-function gameOver(){
-  createCanvas(720, 400);
+function showGameOver(){
+  // createCanvas(720, 400);
   background(0);
-  noStroke();
-  rectMode(CENTER);
-  // fill(0);
+  // noStroke();
+  // rectMode(CENTER);
+  gameOver = true;
+  fill(255);
   text("GAME OVER! click to continue.", width/2 - width/8, height/2);
   player.drawScore();
 }
@@ -59,15 +64,19 @@ function draw() {
   
 
   if (player.lives == 0) {
-    gameOver();
+    showGameOver();
   }
   
 
 }
 
 function mousePressed() {
-  setup();
-  player.lives = 3;
+  if(gameOver === true){
+    setup();
+    player.lives = 3;
+    gameOver = false;
+  }
+ 
   
 }
 
