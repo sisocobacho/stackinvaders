@@ -40,7 +40,7 @@ function gameOver(){
   noStroke();
   rectMode(CENTER);
   // fill(0);
-  text("GAME OVER", width/2, height/2);
+  text("GAME OVER! click to continue.", width/2 - width/8, height/2);
   player.drawScore();
 }
 
