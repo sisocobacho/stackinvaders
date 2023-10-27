@@ -1,7 +1,7 @@
 class AlienBullet extends Bullet {
     constructor(x, y) {
         super(x, y);
-        this.r = 3;
+        this.r = 2;
     }
     update() {
         this.y += 2;

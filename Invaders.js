@@ -125,7 +125,7 @@ class Invaders {
     	// draw the bullets first so they're underneath
       for (let bullet of this.bullets) {
           fill('#f30000')
-          rect(bullet.x, bullet.y,  3, 10);
+          rect(bullet.x, bullet.y,  4, 10);
       }
       
       for (let alien of this.aliens) {
