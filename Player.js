@@ -11,6 +11,7 @@ class Player {
         this.lives = 3;
         this.maxBullets = 2;
         this.score = 0;
+        this.r = 10;
 
     }
     update() {
@@ -32,7 +33,7 @@ class Player {
             this.bullets[i].update();
             if (this.hasHitAlien(this.bullets[i])) {
                 this.bullets.splice(i, 1);
-                this.score += 100;
+                this.score += 10;
                 break;
             } else if (this.bullets[i].isOffScreen()) {
                 // console.log("offscreen")
@@ -44,8 +45,14 @@ class Player {
     hasHitAlien(bullet) {
         return invaders.checkCollision(bullet.x, bullet.y);
     }
+    // display() {
+    //     //   ellipse(this.x, this.y, this.r * 2, this.r * 2);
+    //     imageMode(CENTER);
+    //     image(this.image, this.x, this.y, this.r*2, this.r*2);
+    // }
+
     draw() {
-        image(this.image, this.x, this.y, this.image.width / 20, this.image.height/20);
+        image(this.image, this.x, this.y, this.r * 2, this.r*2);
         this.drawBullets();
     }
     drawBullets() {
@@ -58,12 +65,12 @@ class Player {
         textSize(15);
         text("LIVES", 250, 25);
         for (let i = 0; i < this.lives; i++) {
-            image(this.image, 300 + i * 30, 10, this.image.width / 20, this.image.height/20);
+            image(this.image, 300 + i * 30, 10, this.r * 2, this.r * 2);
         }
     }
     drawScore() {
         fill(255)
-        text("SCORE", 50, 25);
+        text("Bounty", 50, 25);
         push();
         fill(100, 255, 100);
         text(this.score, 110, 25);
@@ -106,9 +113,9 @@ class Player {
     }
     loseLive(){
         if(this.lives > 0){
-            background(255);
+            // background(255);
             this.respawn();
-            background(0);
+            // background(0);
         }
     }
 }

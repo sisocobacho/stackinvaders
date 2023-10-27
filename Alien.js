@@ -6,11 +6,10 @@ class Alien {
         this.image = image;
     }
     draw() {
-        image(this.image, this.x, this.y, this.image.width/30, this.image.height/30);
+        image(this.image, this.x, this.y, this.r * 2, this.r * 2);
     }
     hasHitPlayer(player) {
-          console.log("alien")
-          if (dist(this.x, this.y, player.x, player.y) < this.r + 10) {
+          if (dist(this.x, this.y, player.x, player.y) < this.r + player.r) {
             return true;
         }
         return false

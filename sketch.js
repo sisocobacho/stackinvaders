@@ -7,9 +7,13 @@ let allDebris = [];
 // how hard do you want to make it? :D
 const NUM_DEBRIS = 30;
 
+// const provider = passport.connectEvm();
+// const accounts = await provider.request({ method: "eth_requestAccounts" });
+
 function preload() {
   alienImage = loadImage("invader1.png");
-  shooterImage = loadImage('invader1.png');
+  shooterImage = loadImage('player.png');
+  // shooterImage = loadImage('stackship.svg');
 }
 
 function setup() {
@@ -96,5 +100,6 @@ function updateDebrisAndCheckCollisions() {
       } 
     }
   }
+
 
 

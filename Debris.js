@@ -9,6 +9,7 @@ class Debris {
     resetDebris() {
         
       this.y = random(height - 10);
+      this.r = random(5,10)
       
       let spawnLeftSide = random(1) < 0.5;
       
@@ -53,7 +54,7 @@ class Debris {
     
     hasHitPlayer(player) {
       // console.log("hit player", dist(this.x, this.y, player.x, player.y), this.r + 10)
-        if (dist(this.x, this.y, player.x, player.y) < this.r + 10) {
+        if (dist(this.x, this.y, player.x, player.y) < this.r + player.r) {
           return true;
       }
       return false
