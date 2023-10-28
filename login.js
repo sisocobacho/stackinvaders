@@ -13,9 +13,9 @@ const passport = new window.immutable.passport.Passport({
 
 const provider = passport.connectEvm();
 const accounts = await provider.request({ method: "eth_requestAccounts" });
-window.addEventListener('load', function() {
-    passport.loginCallback();
-});
+// window.addEventListener('load', function() {
+//     passport.loginCallback();
+// });
 
 // passport.logout();
 
