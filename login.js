@@ -1,4 +1,4 @@
-const passport = new window.immutable.passport.Passport({
+window.passport = new window.immutable.passport.Passport({
   baseConfig: new window.immutable.config.ImmutableConfiguration({
     environment: window.immutable.config.Environment.SANDBOX,
   }),
@@ -9,14 +9,14 @@ const passport = new window.immutable.passport.Passport({
   scope: 'openid offline_access email transact'
 });
 
-const provider = passport.connectEvm();
-const accounts = await provider.request({ method: "eth_requestAccounts" });
+window.provider = window.passport.connectEvm();
+window.accounts = await window.provider.request({ method: "eth_requestAccounts" });
 // window.addEventListener('load', function() {
 //     passport.loginCallback();
 // });
 
 // passport.logout();
 
-const userProfile = await passport.getUserInfo();
+window.userProfile = await passport.getUserInfo();
 
 console.log("userrrrrr", userProfile);
