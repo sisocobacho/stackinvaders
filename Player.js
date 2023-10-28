@@ -109,7 +109,7 @@ class Player {
         this.lives -= 1;
     }
     playerIsUp(){
-        return this.y > invaders.y;
+        return this.y > invaders.aliens[0].y;
     }
     loseLive(){
         if(this.lives > 0){
