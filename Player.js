@@ -70,7 +70,7 @@ class Player {
     }
     drawScore() {
         fill(255)
-        text("Bounty", 50, 25);
+        text(window?.userProfile?.email + " Bounty", 50, 25);
         push();
         fill(100, 255, 100);
         text(this.score, 110, 25);

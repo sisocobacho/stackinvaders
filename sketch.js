@@ -19,23 +19,22 @@ function preload() {
 }
 
 function setup() {
-  canvas = createCanvas(720,400);
-  canvas.style('display', 'block');
-  // noStroke();
-  // rectMode(CENTER);
-  canvas.parent('sketch-holder');
-  // createCanvas(window.innerWidth * 0.9, window.innerHeight * 0.9);
-  invaders = new Invaders(alienImage, 4);
-  player = new Player(shooterImage);
 
-  // create the debris objects
-  for (let i = 0; i < NUM_DEBRIS; i++) {
-    if(allDebris.length < NUM_DEBRIS){
-      allDebris.push(new Debris());
+    canvas = createCanvas(720,400);
+    canvas.style('display', 'block');
+    // noStroke();
+    // rectMode(CENTER);
+    canvas.parent('sketch-holder');
+    // createCanvas(window.innerWidth * 0.9, window.innerHeight * 0.9);
+    invaders = new Invaders(alienImage, 4);
+    player = new Player(shooterImage);
+  
+    // create the debris objects
+    for (let i = 0; i < NUM_DEBRIS; i++) {
+      if(allDebris.length < NUM_DEBRIS){
+        allDebris.push(new Debris());
+      }
     }
-  }
-
-
 }
 
 function showGameOver(){
@@ -50,6 +49,7 @@ function showGameOver(){
 }
 
 function draw() {
+  if(window?.userProfile?.email){
   background(0);
   player.update();
   player.draw();
@@ -67,7 +67,7 @@ function draw() {
     showGameOver();
   }
   
-
+}
 }
 
 function mousePressed() {
