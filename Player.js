@@ -60,21 +60,24 @@ class Player {
             bullet.draw();
         }
     }
-    drawLives() {
-        fill(255);
-        textSize(15);
-        text("LIVES", 250, 25);
+    drawLives(t_width) {
+        // fill(255);
+        // textSize(15);
+        // text("LIVES", t_width, 25);
         for (let i = 0; i < this.lives; i++) {
-            image(this.image, 300 + i * 30, 10, this.r * 2, this.r * 2);
+            image(this.image, width - (i + 1) * 30, 10, this.r * 2, this.r * 2);
         }
     }
-    drawScore() {
+    drawInfo() {
         fill(255)
-        text(window?.userProfile?.email + " Bounty", 50, 25);
+        let bounty_text = window?.userProfile?.email + ": ";
+        let bounty_text_w = textWidth(bounty_text);
+        let score = text(bounty_text, 50, 25);
         push();
         fill(100, 255, 100);
-        text(this.score, 110, 25);
+        text(this.score, bounty_text_w + 50, 25);
         pop();
+        this.drawLives(bounty_text_w + textWidth(this.score) + 100)
     }
     moveLeft() {
         this.isMovingRight = false;

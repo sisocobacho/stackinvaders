@@ -20,6 +20,7 @@ const getUserInfo = async function(){
 const passportLogout = async function(){
     let logout = await window.passport.logout();
     console.log(logout, "logout");
+    window.userProfile = {};
 }
 
 window.addEventListener('load', function() {

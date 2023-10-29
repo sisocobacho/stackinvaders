@@ -38,14 +38,20 @@ function setup() {
 }
 
 function showGameOver(){
-  // createCanvas(720, 400);
   background(0);
-  // noStroke();
-  // rectMode(CENTER);
   gameOver = true;
   fill(255);
-  text("GAME OVER! click to continue.", width/2 - width/8, height/2);
-  player.drawScore();
+  let gameOverT = "GAME OVER! click to continue. Your score was "+ player.score;
+  textSize(16);
+  text( gameOverT, width/2 - textWidth(gameOverT)/2, height/2);
+}
+
+function connectToStart() {
+  background(100);
+  fill(255);
+  textSize(16);
+  let startText = "GAME will start after succesfully authenticating. Click on Connect passport"
+  text(startText, width/2 - textWidth(startText)/2, height/2);
 }
 
 function draw() {
@@ -53,14 +59,16 @@ function draw() {
     background(0);
     player.update();
     player.draw();
-    player.drawScore();
-    player.drawLives();
+    player.drawInfo();
+    // player.drawLives();
     updateDebrisAndCheckCollisions();
     invaders.update(player);
     invaders.draw();
     if (player.lives == 0) {
       showGameOver();
     }
+  }else{
+    connectToStart();
   }
 }
 
