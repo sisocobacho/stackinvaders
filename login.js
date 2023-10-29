@@ -13,14 +13,22 @@ const getUserInfo = async function(){
     console.log("userrrrrr", window.userProfile);
 }
 
+const passportLogout = async function(){
+    let logout = await window.passport.logout;
+    console.log(logout, "logout");
+}
+
 window.addEventListener('load', function() {
 
-    const button = this.document.getElementById('btn-passport');
-    button.onclick = function(){
+    const passportBtn = this.document.getElementById('btn-passport');
+    const logoutBtn = this.document.getElementById('btn-passport');
+    passportBtn.onclick = function(){
        connectPassport();
        window.passport.loginCallback();
        getUserInfo();
     }
+
+    logoutBtn.onclick = passportLogout;
     // window.passport.loginCallback();
 });
 
