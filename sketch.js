@@ -50,24 +50,18 @@ function showGameOver(){
 
 function draw() {
   if(window?.userProfile?.email){
-  background(0);
-  player.update();
-  player.draw();
-  player.drawScore();
-  player.drawLives();
-
-  updateDebrisAndCheckCollisions();
-  invaders.update(player);
-
-  invaders.draw();
-
-  
-
-  if (player.lives == 0) {
-    showGameOver();
+    background(0);
+    player.update();
+    player.draw();
+    player.drawScore();
+    player.drawLives();
+    updateDebrisAndCheckCollisions();
+    invaders.update(player);
+    invaders.draw();
+    if (player.lives == 0) {
+      showGameOver();
+    }
   }
-  
-}
 }
 
 function mousePressed() {

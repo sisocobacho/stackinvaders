@@ -3,14 +3,14 @@ window.passport = new window.immutable.passport.Passport({
       environment: window.immutable.config.Environment.SANDBOX,
     }),
     clientId: 'e6lS9dxoPiDfNRu33C1PslqpTnVYcVJw',
-    redirectUri: 'https://stackinvaders.vercel.app',
+    redirectUri: 'https://stackinvaders.vercel.app/game.html',
     logoutRedirectUri: 'https://stackinvaders.vercel.app/logout.html',
     audience: 'platform_api',
     scope: 'openid offline_access email transact'
   });
 
 
-window.userProfile = await window.passport.getUserInfo();
+// window.userProfile = await window.passport.getUserInfo();
 
-console.log("userrrrrr", window.userProfile);
+// console.log("userrrrrr", window.userProfile);
   
