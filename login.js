@@ -6,6 +6,10 @@ window.provider = window.passport.connectEvm();
 
 const connectPassport = async function(){
     window.accounts = await window.provider.request({ method: "eth_requestAccounts" });
+    if (window.accounts){
+        getUserInfo();
+    }
+
 }
 
 const getUserInfo = async function(){
