@@ -21,7 +21,7 @@ const passportLogout = async function(){
 window.addEventListener('load', function() {
 
     const passportBtn = this.document.getElementById('btn-passport');
-    const logoutBtn = this.document.getElementById('btn-passport');
+    const logoutBtn = this.document.getElementById('btn-logout');
     passportBtn.onclick = function(){
        connectPassport();
        window.passport.loginCallback();
