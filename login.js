@@ -31,7 +31,7 @@ window.addEventListener('load', function() {
     }
 
     logoutBtn.onclick = passportLogout;
-    // window.passport.loginCallback();
+    window.passport.loginCallback();
 
     // window.passport.loginCallback();
     // getUserInfo();
