@@ -56,6 +56,8 @@ function connectToStart() {
 
 function draw() {
   if(window?.userProfile?.email){
+    document.getElementById('btn-passport').hidden = true;
+    document.getElementById('btn-logout').hidden = false;
     background(0);
     player.update();
     player.draw();
@@ -69,6 +71,9 @@ function draw() {
     }
   }else{
     connectToStart();
+    document.getElementById('btn-passport').hidden = false;
+    document.getElementById('btn-logout').hidden = true;
+
   }
 }
 
