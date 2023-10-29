@@ -30,7 +30,7 @@ window.addEventListener('load', function() {
     // window.passport.loginCallback();
 
     // window.passport.loginCallback();
-    getUserInfo();
+    // getUserInfo();
 });
 
 // passport.logout();
