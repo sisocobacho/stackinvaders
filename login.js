@@ -24,12 +24,13 @@ window.addEventListener('load', function() {
     const logoutBtn = this.document.getElementById('btn-logout');
     passportBtn.onclick = function(){
        connectPassport();
-       window.passport.loginCallback();
        getUserInfo();
     }
 
     logoutBtn.onclick = passportLogout;
     // window.passport.loginCallback();
+
+    window.passport.loginCallback();
 });
 
 // passport.logout();
