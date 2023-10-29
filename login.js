@@ -14,7 +14,7 @@ const getUserInfo = async function(){
 }
 
 const passportLogout = async function(){
-    let logout = await window.passport.logout;
+    let logout = await window.passport.logout();
     console.log(logout, "logout");
 }
 
@@ -24,13 +24,13 @@ window.addEventListener('load', function() {
     const logoutBtn = this.document.getElementById('btn-logout');
     passportBtn.onclick = function(){
        connectPassport();
-       getUserInfo();
     }
 
     logoutBtn.onclick = passportLogout;
     // window.passport.loginCallback();
 
     window.passport.loginCallback();
+    getUserInfo();
 });
 
 // passport.logout();
