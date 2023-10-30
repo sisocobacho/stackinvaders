@@ -39,9 +39,21 @@ async function getData() {
     console.log(response.result);
     let nft = document.getElementById("nft");
     nft.innerHTML = `
-    <h2> Great! You can have this token.</h2>
-    <img src='${response.result.image}'/>
-    <button onclik="alert('hello')"> claim</button>
+    <div class="alert alert-success"> Great Score! You can have this token now.</div>
+    <div class="card" >
+    <div class="card-body">
+      <div class="media">
+        <img src='${response.result.image}' class="mr-3 img-thumbnail" alt="nft" style="width: 30%;">
+        <div class="media-body">
+          <h5 class="card-title">${response.result.name}</h5>
+          <p class="card-text">'${response.result.description}'</p>    
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <button onclik="alert('hello')" class="btn btn-success"> claim</button>
+    </div>
+  </div>
     `;
     return response.result;
   } catch (error) {

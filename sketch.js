@@ -20,7 +20,8 @@ function preload() {
 
 function setup() {
 
-    canvas = createCanvas(720,400);
+    let canvasEl = document.getElementById('sketch-holder')
+    canvas = createCanvas(canvasEl.offsetWidth,400);
     canvas.style('display', 'block');
     // noStroke();
     // rectMode(CENTER);
