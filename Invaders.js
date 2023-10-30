@@ -7,7 +7,6 @@ class Invaders {
         this.aliens = this.initialiseAliens();
         this.bullets = [];
         this.movingDown = true;
-    
         this.speed = 0.2;
       
       	// to make sure the aliens dont spam
@@ -31,7 +30,6 @@ class Invaders {
         if (this.aliens.length == 0) {
             this.nextLevel();
         }
-      
       
        if (this.timeSinceLastBullet >= 40) {
           let bottomAliens = this.getBottomAliens();
@@ -97,7 +95,7 @@ class Invaders {
         return aliensAtTheBottom;
     }
     nextLevel() {
-        this.speed += 0.5;
+        this.speed += 0.2;
         this.aliens = this.initialiseAliens();
     }
 		// get all the x positions for a single frame

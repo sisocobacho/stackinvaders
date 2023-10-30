@@ -12,8 +12,14 @@ class Player {
         this.maxBullets = 2;
         this.score = 0;
         this.r = 10;
+        this.nft = false;
 
     }
+    showNft() {
+        this.nft = true;
+        window.getData();
+    }
+    
     update() {
         if (this.isMovingRight && this.x < width -40) {
             this.x += 1;
@@ -54,6 +60,10 @@ class Player {
     draw() {
         image(this.image, this.x, this.y, this.r * 2, this.r*2);
         this.drawBullets();
+        if(this.score > 100 && !this.nft){
+            this.showNft()
+        }
+
     }
     drawBullets() {
         for (let bullet of this.bullets) {

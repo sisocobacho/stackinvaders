@@ -7,7 +7,7 @@ let gameOver = false;
 let canvas;
 
 // how hard do you want to make it? :D
-const NUM_DEBRIS = 30;
+const NUM_DEBRIS = 25;
 
 // const provider = passport.connectEvm();
 // const accounts = await provider.request({ method: "eth_requestAccounts" });
@@ -109,8 +109,7 @@ function updateDebrisAndCheckCollisions() {
         allDebris[i].display();
       
       if (allDebris[i].hasHitPlayer(player)) {
-          console.log("hit player")
-          allDebris.splice(i, 0);
+          allDebris.splice(i, 1);
           player.loseLive();
           break;
       } 
