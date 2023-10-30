@@ -1,4 +1,4 @@
-import { ethers } from "libs/ethers-5.1.esm.min.js";
+import { ethers } from "./libs/ethers-5.1.esm.min.js";
 
 console.log(ethers)
 
