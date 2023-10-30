@@ -4,7 +4,7 @@ console.log(ethers)
 
 
 
-window.transferToken = async function () {
+const transTokenContractTest = async function () {
 
     if (window?.provider) {
         window.signer = window.provider.getSigner();
@@ -37,6 +37,8 @@ window.transferToken = async function () {
 
 }
 
+
+export default transTokenContractTest;
 // Construct the contract interface using the ABI
 
 // Your code here...
