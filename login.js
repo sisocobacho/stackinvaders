@@ -35,9 +35,13 @@ const client = new window.immutable.blockchainData.BlockchainData(config);
 
 const transTokenContractTest = async function () {
     if (window?.provider) {
-        window.signer = window.provider.getSigner();
+        const provider = new ethers.providers.Web3Provider(window.passport)
+        window.signer = provider.getSigner();
         const userAddress = await window.signer.getAddress();
         const toAddress = window.accounts[0];
+
+        console.log("userAddress", userAddress);
+        console.log("toAddress", toAddress);
         const erc721ContractAddress = '0x84f776D599C53bf42357ca9C0E69040E294c5642';
         const tokenId = 1;
 
