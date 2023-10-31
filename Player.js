@@ -13,6 +13,7 @@ class Player {
         this.score = 0;
         this.r = 10;
         this.nft = false;
+        this.gas = [];
 
     }
     showNft() {
@@ -33,6 +34,29 @@ class Player {
             this.y += 1;
         }
         this.updateBullets();
+    }
+    drawGas(){
+        let colors =  [150, 175, 200, 220]
+        
+        let blocks = 8;
+        let blockW = this.r/2;
+        let blockH = this.r/3;
+        
+        
+        for (let i = 0; i < blocks; i++) {
+            let currentW = blockW - i + 2;
+            let px = this.x + blockW * 2 - currentW / 2;
+            if(this.isMovingLeft === true){
+                // px = this.x + (i + 2)/2 + random(-1, 1);
+                px +=2 * i + 1;
+            } else if(this.isMovingRight === true){
+                // px = this.x + (i + 2)/2 + random(-1, 1);
+                px -= 2 * i + 1;
+            }
+
+            fill(245, random(150,220), 66);
+            rect(px + random(-2, 2), this.y + this.r*2  + i * blockH + 4 + random(-2, 2), currentW, blockH);
+        }
     }
     updateBullets() {
         for (let i = this.bullets.length - 1; i >= 0; i--) {
@@ -55,6 +79,7 @@ class Player {
     draw() {
         image(this.image, this.x, this.y, this.r * 2, this.r*2);
         this.drawBullets();
+        this.drawGas();
         if(this.score > 500 && !this.nft){
             this.showNft()
         }
