@@ -17,6 +17,8 @@ In the game you move with the arrows left, right, up, down and you shoot with th
 - Javascript
 - Css
 - P5js
+- Bootstrap
+- Immutable zkEVM
 
 ## Inmutable Passport integration
 

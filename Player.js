@@ -51,16 +51,11 @@ class Player {
     hasHitAlien(bullet) {
         return invaders.checkCollision(bullet.x, bullet.y);
     }
-    // display() {
-    //     //   ellipse(this.x, this.y, this.r * 2, this.r * 2);
-    //     imageMode(CENTER);
-    //     image(this.image, this.x, this.y, this.r*2, this.r*2);
-    // }
 
     draw() {
         image(this.image, this.x, this.y, this.r * 2, this.r*2);
         this.drawBullets();
-        if(this.score > 100 && !this.nft){
+        if(this.score > 500 && !this.nft){
             this.showNft()
         }
 
@@ -71,9 +66,6 @@ class Player {
         }
     }
     drawLives(t_width) {
-        // fill(255);
-        // textSize(15);
-        // text("LIVES", t_width, 25);
         for (let i = 0; i < this.lives; i++) {
             image(this.image, width - (i + 1) * 30, 10, this.r * 2, this.r * 2);
         }
@@ -111,7 +103,6 @@ class Player {
         }
         
     }
-
     respawn() {
         this.x = width / 2;
         this.y = height -30;
@@ -126,9 +117,7 @@ class Player {
     }
     loseLive(){
         if(this.lives > 0){
-            // background(255);
             this.respawn();
-            // background(0);
         }
     }
 }
