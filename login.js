@@ -35,7 +35,7 @@ const client = new window.immutable.blockchainData.BlockchainData(config);
 
 const transTokenContractTest = async function () {
     if (window?.provider) {
-        const provider = new ethers.providers.Web3Provider(window.passport)
+        const provider = new ethers.providers.Web3Provider(window.provider)
         window.signer = provider.getSigner();
         const userAddress = await window.signer.getAddress();
         const toAddress = window.accounts[0];
@@ -43,7 +43,6 @@ const transTokenContractTest = async function () {
         console.log("userAddress", userAddress);
         console.log("toAddress", toAddress);
         const erc721ContractAddress = '0x84f776D599C53bf42357ca9C0E69040E294c5642';
-        const tokenId = 1;
 
         const contract = new ethers.Contract(
             erc721ContractAddress,
@@ -56,7 +55,7 @@ const transTokenContractTest = async function () {
         const tx = await contract.safeTransferFrom(
             userAddress,
             toAddress,
-            tokenId,
+            TOKEN_ID,
         );
 
         // Wait for the transaction to complete
