@@ -109,7 +109,8 @@ window.addEventListener('load', function() {
     const passportBtn = this.document.getElementById('btn-passport');
     const logoutBtn = this.document.getElementById('btn-logout');
     
-    passportBtn.add = function(){
+    passportBtn.onclick = function(){
+       window.siconnecting = true;
        connectPassport();
     }
 

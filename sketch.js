@@ -6,6 +6,8 @@ let allDebris = [];
 let gameOver = false;
 let canvas;
 let canvasEl;
+let loading = 10;
+let loadingPlus = true;
 
 // how hard do you want to make it? :D
 const NUM_DEBRIS = 25;
@@ -52,7 +54,23 @@ function connectToStart() {
   fill(255);
   textSize(16);
   let startText = "GAME will start after succesfully authenticating. Click on Connect passport"
-  text(startText, width / 2 - textWidth(startText) / 2, height / 2);
+  let textXpos = width / 2 - textWidth(startText) / 2
+  if (window.siconnecting) {
+    startText = "Connecting ..."
+    textXpos = width / 2 - textWidth(startText) / 2
+    if(loadingPlus === true && loading == 100){
+      loadingPlus = false
+    } else if (loading == 10 && loadingPlus === false) {
+      loadingPlus = true
+    }
+    if (loadingPlus) {
+      loading++;
+    } else {
+      loading--;
+    }
+    fill(loading + 150)
+  }
+  text(startText, textXpos, height / 2);
 }
 
 function draw() {
