@@ -55,10 +55,11 @@ function connectToStart() {
   textSize(16);
   let startText = "GAME will start after succesfully authenticating. Click on Connect passport"
   let textXpos = width / 2 - textWidth(startText) / 2
+
   if (window.siconnecting) {
     startText = "Connecting ..."
     textXpos = width / 2 - textWidth(startText) / 2
-    if(loadingPlus === true && loading == 100){
+    if (loadingPlus === true && loading == 100) {
       loadingPlus = false
     } else if (loading == 10 && loadingPlus === false) {
       loadingPlus = true
