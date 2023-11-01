@@ -44,6 +44,7 @@ Here we define all the logic and appearance related to the debris. The debris ar
 Passport integration is used to authenticate the user and obtain information like the user email. Allowing us to link the score in the game with the user. It also allows use to access the nft when you get to a score of 500.
 
 - Authentication
+
 By clicking the button “Connect Passsport” we authenticate with immutable using provider method “eth_requestAccounts”. 
 
 - Logout
