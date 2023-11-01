@@ -8,12 +8,10 @@ const connectPassport = async function(){
     if (window.accounts){
         getUserInfo();
     }
-
 }
 
 const getUserInfo = async function(){
     window.userProfile = await window.passport.getUserInfo();
-    console.log("userrrrrr", window.userProfile);
 }
 
 const passportLogout = async function(){
