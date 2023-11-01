@@ -3,8 +3,9 @@ class PlayerBullet extends Bullet {
     constructor(x, y, up) {
         super(x, y);
         this.up = up;
-        console.log("down", up);
     }
+
+    
     update() {
         if(this.up){
             this.y -= 6;
