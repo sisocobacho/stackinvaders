@@ -39,11 +39,24 @@ We do the same thing for the players bullet. We implemented functionality for th
 Here we define all the logic and appearance related to the debris. The debris are simply circles of different sizes that randomly appear from each side of the screen. It also has functionality for determining if a player is hit.
 
 
-## Inmutable Passport integration
+## Immutable Passport integration
 
 Passport integration is used to authenticate the user and obtain information like the user email. Allowing us to link the score in the game with the user. It also allows use to access the nft when you get to a score of 500.
 
-Authentication
+- Authentication
+By clicking the button “Connect Passsport” we authenticate with immutable using provider method “eth_requestAccounts”. 
+
+- Logout
+
+If authenticated you can click button “Logout”. It calls the passport method “logout()”
+
+- User Information
+
+To get user information we use passport method “getUserInfo()”. We use this to associate the user email with the game score.
+
+- Nft
+
+We obtain the nft using a new immutable BlockchainData instance from there we can call the function “getNFT” we pass the contract address and the nft id. It returns a json with all the nft information. We show in game the name, image and description.
 
 ## Controls
 
