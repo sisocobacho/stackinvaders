@@ -34,7 +34,7 @@ We use inheritance to get everything that the Bullet has and add  functionality 
 
 We do the same thing for the players bullet. We implemented functionality for the movement this has the particularity that it depends if the player is above the enemies it shoots down if under shoots up.
 
-- Debris
+- Debris.js
 
 Here we define all the logic and appearance related to the debris. The debris are simply circles of different sizes that randomly appear from each side of the screen. It also has functionality for determining if a player is hit.
 
