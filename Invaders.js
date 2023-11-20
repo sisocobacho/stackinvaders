@@ -1,6 +1,7 @@
 class Invaders {
-    constructor(alienImage, rowsCount) {
+    constructor(alienImage, alienImages, rowsCount) {
         this.alienImage = alienImage;
+        this.alienImages = alienImages;
         this.rowsCount = rowsCount;
         this.direction = 0;
         this.y = 40;
@@ -112,7 +113,7 @@ class Invaders {
         let y = 40;
         for (let i = 0; i < this.rowsCount; i++) {
             for (let x = 40; x < width - 40; x += 30) {
-                aliens.push(new Alien(x, y, this.alienImage));
+                aliens.push(new Alien(x, y, this.alienImage, this.alienImages));
             }
             y += 40;
         }

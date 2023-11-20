@@ -8,6 +8,7 @@ let canvas;
 let canvasEl;
 let loading = 10;
 let loadingPlus = true;
+let alienImages = [];
 
 // how hard do you want to make it? :D
 const NUM_DEBRIS = 25;
@@ -16,8 +17,12 @@ const NUM_DEBRIS = 25;
 // const accounts = await provider.request({ method: "eth_requestAccounts" });
 
 function preload() {
-  alienImage = loadImage("invader1.png");
-  shooterImage = loadImage('player.png');
+  for (let i = 1; i < 3; i++) {
+    // nf() formats the number to be 4 digits using zeros for padding:
+    alienImages.push(loadImage(`assets/greenalien-${i}.png`));
+  }
+  // alienImage = loadImage("greenalien.png");
+  shooterImage = loadImage('assets/player.png');
   // shooterImage = loadImage('stackship.svg');
 }
 
@@ -29,7 +34,8 @@ function setup() {
   // rectMode(CENTER);
   canvas.parent('sketch-holder');
   // createCanvas(window.innerWidth * 0.9, window.innerHeight * 0.9);
-  invaders = new Invaders(alienImage, 4);
+  console.log(alienImages)
+  invaders = new Invaders(alienImage, alienImages, 4);
   player = new Player(shooterImage);
 
   // create the debris objects
