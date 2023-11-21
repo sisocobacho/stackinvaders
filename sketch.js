@@ -10,6 +10,7 @@ let canvasEl;
 let loading = 10;
 let loadingPlus = true;
 let alienImages = [];
+let particles = [];
 
 // how hard do you want to make it? :D
 const NUM_DEBRIS = 25;
@@ -94,6 +95,16 @@ function draw() {
     updateDebrisAndCheckCollisions();
     invaders.update(player);
     invaders.draw();
+    for (let i = particles.length - 1; i >= 0; i--) {
+      particles[i].update();
+      particles[i].display();
+      
+      // Remove particles that are off-screen
+      if (particles[i].isFinished()) {
+        particles.splice(i, 1);
+      }
+    }
+
     if (player.lives == 0) {
       showGameOver();
     }

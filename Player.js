@@ -62,6 +62,11 @@ class Player {
         for (let i = this.bullets.length - 1; i >= 0; i--) {
             this.bullets[i].update();
             if (this.hasHitAlien(this.bullets[i])) {
+                
+                for (let p = 0; p < 10; p++) {
+                    particles.push(new Particle(this.bullets[i].x, this.bullets[i].y))
+                }
+                
                 this.bullets.splice(i, 1);
                 this.score += 10;
                 break;
