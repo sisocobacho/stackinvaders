@@ -1,9 +1,12 @@
 class Debris {
 
   
-    constructor() {
+    constructor(image) {
       this.r = 5;
+      this.a = 0;
+      this.rotationRate = random(-0.05, 0.05)
       this.resetDebris();
+      this.image = image;
     }
     
     resetDebris() {
@@ -47,9 +50,17 @@ class Debris {
     }
     
     display() {
-        fill(100);
-        noStroke();
-        ellipse(this.x, this.y, this.r * 2, this.r * 2);
+        // rotate(random(0, 360))
+        // push();
+        // rotate(this.a, [this.x + this.r, this.y - this.r])
+        push();
+        translate(this.x, this.y);
+        rotate(this.a);
+        imageMode(CENTER);
+        image(this.image, 0, 0, this.r * 2, this.r * 2);
+        this.a = this.a + this.rotationRate;
+        pop();
+      
     }
     
     hasHitPlayer(player) {

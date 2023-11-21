@@ -1,6 +1,7 @@
 let alienImage;  // 23 * 16
 let invaders;
 let shooterImage;
+let debriImage;
 let player;
 let allDebris = [];
 let gameOver = false;
@@ -23,6 +24,7 @@ function preload() {
   }
   // alienImage = loadImage("greenalien.png");
   shooterImage = loadImage('assets/player.png');
+  debriImage = loadImage('assets/debri.png')
   // shooterImage = loadImage('stackship.svg');
 }
 
@@ -41,7 +43,7 @@ function setup() {
   // create the debris objects
   for (let i = 0; i < NUM_DEBRIS; i++) {
     if (allDebris.length < NUM_DEBRIS) {
-      allDebris.push(new Debris());
+      allDebris.push(new Debris(debriImage));
     }
   }
 }
