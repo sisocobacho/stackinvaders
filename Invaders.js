@@ -159,6 +159,7 @@ class Invaders {
             this.bullets[i].y  += 2;
             if(this.bullets[i].hasHitPlayer(player)){
                 player.loseLive();
+                this.bullets.splice(i, 1);
             }
         }
     }

@@ -2,7 +2,7 @@ class Player {
     constructor(shooterImage) {
         this.image = shooterImage;
         this.x = width / 2;
-        this.y = height -30;
+        this.y = height - 30;
         this.isMovingLeft = false;
         this.isMovingRight = false;
         this.isMovingUp = false;
@@ -14,59 +14,59 @@ class Player {
         this.r = 10;
         this.nft = false;
         this.gas = [];
-
+        this.hitAlpha = 255;
+        this.hitEffect = false;
     }
     showNft() {
         this.nft = true;
         window.getData();
     }
-    
+
     update() {
-        if (this.isMovingRight && this.x < width -40) {
+        if (this.isMovingRight && this.x < width - 40) {
             this.x += 1;
         } else if (this.isMovingLeft && this.x > 0) {
             this.x -= 1;
         }
-        
-        if(this.isMovingUp && this.y > 0){
+
+        if (this.isMovingUp && this.y > 0) {
             this.y -= 1;
-        } else if(this.isMovingDown && this.y < height - 30){
+        } else if (this.isMovingDown && this.y < height - 30) {
             this.y += 1;
         }
         this.updateBullets();
     }
-    drawGas(){
-        let colors =  [150, 175, 200, 220]
-        
+    drawGas() {
+        let colors = [150, 175, 200, 220]
+
         let blocks = 8;
-        let blockW = this.r/2;
-        let blockH = this.r/3;
-        
-        
+        let blockW = this.r / 2;
+        let blockH = this.r / 3;
+
         for (let i = 0; i < blocks; i++) {
             let currentW = blockW - i + 2;
             let px = this.x + blockW * 2 - currentW / 2;
-            if(this.isMovingLeft === true){
+            if (this.isMovingLeft === true) {
                 // px = this.x + (i + 2)/2 + random(-1, 1);
-                px +=2 * i + 1;
-            } else if(this.isMovingRight === true){
+                px += 2 * i + 1;
+            } else if (this.isMovingRight === true) {
                 // px = this.x + (i + 2)/2 + random(-1, 1);
                 px -= 2 * i + 1;
             }
 
-            fill(245, random(150,220), 66);
-            rect(px + random(-2, 2), this.y + this.r*2  + i * blockH + 4 + random(-2, 2), currentW, blockH);
+            fill(245, random(150, 220), 66);
+            rect(px + random(-2, 2), this.y + this.r * 2 + i * blockH + 4 + random(-2, 2), currentW, blockH);
         }
     }
     updateBullets() {
         for (let i = this.bullets.length - 1; i >= 0; i--) {
             this.bullets[i].update();
             if (this.hasHitAlien(this.bullets[i])) {
-                
+
                 for (let p = 0; p < 10; p++) {
                     particles.push(new Particle(this.bullets[i].x, this.bullets[i].y))
                 }
-                
+
                 this.bullets.splice(i, 1);
                 this.score += 10;
                 break;
@@ -82,13 +82,36 @@ class Player {
     }
 
     draw() {
-        image(this.image, this.x, this.y, this.r * 2, this.r*2);
+        image(this.image, this.x, this.y, this.r * 2, this.r * 2);
         this.drawBullets();
         this.drawGas();
-        if(this.score > 500 && !this.nft){
+        if (this.score > 500 && !this.nft) {
             this.showNft()
         }
+        if(this.hitEffect == true) {
+            console.log("hitting")
+            this.drawHitEffect();
+        } else {
+            console.log("not hit")
+        }
+        
+    }
 
+    drawHitEffect() {
+        blendMode(DIFFERENCE);
+        // Set the fill color to red and adjust the alpha value
+        fill(255, 0, 0, this.hitAlpha);
+        // Draw a rectangle covering the entire canvas
+        rect(0, 0, width, height);
+        // Reset the blending mode to 'normal'
+        blendMode(BLEND);
+        // Reduce the alpha value over time
+        this.hitAlpha -= 10;
+        // Disable the hit effect when the alpha value reaches 0
+        if (this.hitAlpha <= 0) {
+            this.hitEffect = false;
+            this.hitAlpha = 255;
+        }
     }
     drawBullets() {
         for (let bullet of this.bullets) {
@@ -119,34 +142,35 @@ class Player {
         this.isMovingLeft = false;
         this.isMovingRight = true;
     }
-    moveUp(){
+    moveUp() {
         this.isMovingUp = true;
         this.isMovingDown = false;
-    }moveDown(){
+    } moveDown() {
         this.isMovingUp = false;
         this.isMovingDown = true;
     }
 
     shoot() {
-        if (this.bullets.length < this.maxBullets){
+        if (this.bullets.length < this.maxBullets) {
             this.bullets.push(new PlayerBullet(this.x + 12, this.y, this.playerIsUp()));
         }
-        
+
     }
     respawn() {
-        this.x = width / 2;
-        this.y = height -30;
-        this.isMovingLeft = false;
-        this.isMovingRight = false;
-        this.isMovingUp = false;
-        this.isMovingDown = false;
+        // this.x = width / 2;
+        // this.y = height -30;
+        // this.isMovingLeft = false;
+        // this.isMovingRight = false;
+        // this.isMovingUp = false;
+        // this.isMovingDown = false;
         this.lives -= 1;
+        this.hitEffect = true;
     }
-    playerIsUp(){
+    playerIsUp() {
         return this.y > invaders.aliens[0].y;
     }
-    loseLive(){
-        if(this.lives > 0){
+    loseLive() {
+        if (this.lives > 0) {
             this.respawn();
         }
     }
