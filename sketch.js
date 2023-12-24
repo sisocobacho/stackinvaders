@@ -24,7 +24,7 @@ function preload() {
     alienImages.push(loadImage(`assets/greenalien-${i}.png`));
   }
   // alienImage = loadImage("greenalien.png");
-  shooterImage = loadImage('assets/player.png');
+  shooterImage = loadImage('assets/redspaceship.png');
   debriImage = loadImage('assets/debri.png')
   // shooterImage = loadImage('stackship.svg');
 }

@@ -88,7 +88,7 @@ The are some ideas to improve the game but the time constrains didn't allowed to
 - Create a ranking of tops score. Given the 1,2,3 place unique ntfs.
 - Adding sound to the game.
 - Adding explotion effects
-- Making the game playable on movile
+- Making the game playable on mobile
 
 ## Social Media
 
