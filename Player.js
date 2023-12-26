@@ -200,6 +200,7 @@ class Player {
 
     drawNfts(t_width){
         for (let i = 0; i < window.nfts; i++) {
+            console.log("NFT", window.nfts[i])
             image(this.image, t_width + (i + 1) * 30, 10, this.r * 2, this.r * 2);
         }
     }
