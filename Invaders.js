@@ -1,6 +1,6 @@
 class Invaders {
-    constructor(alienImage, alienImages, rowsCount) {
-        this.alienImage = alienImage;
+    constructor(alienImages, rowsCount) {
+        // this.alienImage = alienImage;
         this.alienImages = alienImages;
         this.rowsCount = rowsCount;
         this.direction = 0;
@@ -9,43 +9,43 @@ class Invaders {
         this.bullets = [];
         this.movingDown = true;
         this.speed = 0.2;
-      
-      	// to make sure the aliens dont spam
         this.timeSinceLastBullet = 0;
     }
+
     update(player) {
-        for (let alien of this.aliens) {
+        for (let i = this.aliens.length - 1; i >= 0; i--) {
+            // for (let alien of this.aliens) {
+            let alien = this.aliens[i];
             if (this.direction == 0) {
-                alien.x+= this.speed;
+                alien.x += this.speed;
             } else if (this.direction == 1) {
-                alien.x-= this.speed;
+                alien.x -= this.speed;
             }
-            if (alien.hasHitPlayer(player)){
-                player.loseLive();
+            if (alien.hasHitPlayer(player)) {
+                player.loseLife();
+                // player.resetPos();
+                this.aliens.splice(i, 1);
             }
         }
-   
+
         if (this.hasChangedDirection()) {
             this.moveAlienDown();
         }
         if (this.aliens.length == 0) {
             this.nextLevel();
         }
-      
-       if (this.timeSinceLastBullet >= 40) {
-          let bottomAliens = this.getBottomAliens();
-          if (bottomAliens.length) {
-              this.makeABottomAlienShoot(bottomAliens);
-          }  
+
+        if (this.timeSinceLastBullet >= 40) {
+            let bottomAliens = this.getBottomAliens();
+            if (bottomAliens.length) {
+                this.makeABottomAlienShoot(bottomAliens);
+            }
         }
-      	this.timeSinceLastBullet++;
-      
-      
-      // to move the bullets
-      this.updateBullets(player);
-        
+        this.timeSinceLastBullet++;
+
+        this.updateBullets(player);
     }
-  
+
     hasChangedDirection() {
         for (let alien of this.aliens) {
             if (alien.x >= width - 40) {
@@ -58,26 +58,24 @@ class Invaders {
         }
         return false;
     }
+
     moveAlienDown() {
         for (let alien of this.aliens) {
-            // console.log(alien.y, alien.x, "moving", height, alien.y >= height -30)
-            if(this.movingDown){
+            if (this.movingDown) {
                 alien.y += 10;
-                if(alien.y >= height -30){
+                if (alien.y >= height - 30) {
                     this.movingDown = false;
                 }
             } else {
                 alien.y -= 10;
-                if(alien.y <= 0){
+                if (alien.y <= 0) {
                     this.movingDown = true;
                 }
             }
-            
         }
     }
-  
-   // to make sure only the bottom row will shoot
-   getBottomAliens() {
+
+    getBottomAliens() {
         let allXPositions = this.getAllXPositions();
         let aliensAtTheBottom = [];
         for (let alienAtX of allXPositions) {
@@ -95,11 +93,7 @@ class Invaders {
         }
         return aliensAtTheBottom;
     }
-    nextLevel() {
-        this.speed += 0.2;
-        this.aliens = this.initialiseAliens();
-    }
-		// get all the x positions for a single frame
+
     getAllXPositions() {
         let allXPositions = new Set();
         for (let alien of this.aliens) {
@@ -107,60 +101,63 @@ class Invaders {
         }
         return allXPositions
     }
-    
+
+    nextLevel() {
+        this.speed += 0.2;
+        this.aliens = this.initialiseAliens();
+    }
+
     initialiseAliens() {
         let aliens = [];
         let y = 40;
         for (let i = 0; i < this.rowsCount; i++) {
             for (let x = 40; x < width - 40; x += 30) {
-                aliens.push(new Alien(x, y, this.alienImage, this.alienImages));
+                aliens.push(new Alien(x, y, this.alienImages));
             }
             y += 40;
         }
         return aliens;
     }
+
     draw() {
-      
-    	// draw the bullets first so they're underneath
-      for (let bullet of this.bullets) {
-          fill('#f30000')
-          rect(bullet.x, bullet.y,  4, 10);
-      }
-      
-      for (let alien of this.aliens) {
-          alien.draw();
-      }
-      
-  
+        for (let bullet of this.bullets) {
+            fill('#f30000')
+            rect(bullet.x, bullet.y, 4, 10);
+        }
+
+        for (let alien of this.aliens) {
+            alien.draw();
+        }
     }
-  
+
     checkCollision(x, y) {
-      for (let i = this.aliens.length - 1; i >= 0; i--) {
-          let currentAlien = this.aliens[i];
-          if (dist(x, y, currentAlien.x + 11.5, currentAlien.y + 8) < 10) {
-              this.aliens.splice(i, 1);
-              return true;
-          }
-      }
-      return false;
+        for (let i = this.aliens.length - 1; i >= 0; i--) {
+            let currentAlien = this.aliens[i];
+            if (dist(x, y, currentAlien.x + 11.5, currentAlien.y + 8) < 10) {
+                this.aliens.splice(i, 1);
+                return true;
+            }
+        }
+        return false;
     }
-  
-  
+
     makeABottomAlienShoot(bottomAliens) {
-      let shootingAlien = random(bottomAliens);
-      let bullet = new AlienBullet(shootingAlien.x + 10, shootingAlien.y + 10);
-    
-      this.bullets.push(bullet);
-      this.timeSinceLastBullet = 0;
+        let shootingAlien = random(bottomAliens);
+        let bullet = new AlienBullet(shootingAlien.x + 10, shootingAlien.y + 10);
+        this.bullets.push(bullet);
+        this.timeSinceLastBullet = 0;
     }
-  
-     updateBullets(player) {
-        for (let i = this.bullets.length - 1; i >= 0; i-- ) {
-            this.bullets[i].y  += 2;
-            if(this.bullets[i].hasHitPlayer(player)){
-                player.loseLive();
+
+    updateBullets(player) {
+        console.log("player!!!!", player);
+        for (let i = this.bullets.length - 1; i >= 0; i--) {
+            this.bullets[i].y += 2;
+            if (this.bullets[i].hasHitPlayer(player)) {
+                player.loseLife();
                 this.bullets.splice(i, 1);
             }
         }
     }
+
+
 }

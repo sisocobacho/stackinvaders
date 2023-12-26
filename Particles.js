@@ -1,11 +1,11 @@
 class Particle {
-    constructor(x, y) {
+    constructor(x, y, color) {
       this.x = x;
       this.y = y;
       this.velocity = createVector(random(-1, 1), random(-1, 1));
       this.size = random(2, 6);
       this.alpha = 255;
-      this.color = color(0, 255, 0);
+      this.color = color;
     }
     
     update() {
