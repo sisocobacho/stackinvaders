@@ -18,8 +18,11 @@ const config = {
 
 const client = new window.immutable.blockchainData.BlockchainData(config);
 
+window.nfts = [];
+
 const getUserInfo = async function () {
     window.userProfile = await window.passport.getUserInfo();
+    window.nfts = await window.getUserNfts();
 }
 
 const passportLogout = async function () {
@@ -117,7 +120,7 @@ async function getUserNfts() {
                 contractAddress: CONTRACT_ADDRESS
             }
         );
-        return response;
+        return response.result;
     } else {
         return [];
     }

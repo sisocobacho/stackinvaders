@@ -192,9 +192,15 @@ class Player {
         }
     }
 
-    drawLives(t_width) {
+    drawLives() {
         for (let i = 0; i < this.lives; i++) {
             image(this.image, width - (i + 1) * 30, 10, this.r * 2, this.r * 2);
+        }
+    }
+
+    drawNfts(t_width){
+        for (let i = 0; i < window.nfts; i++) {
+            image(this.image, t_width + (i + 1) * 30, 10, this.r * 2, this.r * 2);
         }
     }
 
@@ -207,7 +213,8 @@ class Player {
         fill(100, 255, 100);
         text(this.score, bounty_text_w + 50, 25);
         pop();
-        this.drawLives(bounty_text_w + textWidth(this.score) + 100)
+        this.drawLives();
+        this.drawNfts(bounty_text_w + textWidth(this.score) + 100);
     }
 
     // helper functions
