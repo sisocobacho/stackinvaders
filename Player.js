@@ -203,7 +203,7 @@ class Player {
             // console.log("NFTSSS", window.nfts[i]);
             if(window.nfts[i]?.name === "Level 1 Badge"){
                 let nft_text = "NFTS: ";
-                let nft_text_w = textWidth(bounty_text);
+                let nft_text_w = textWidth(nft_text);
                 text(this.score, width/2 - nft_text_w, 25);
                 image(this.imgNft1, width/2  + (i + 1) * 30, 10, this.r * 2.5, this.r * 2.5);
             }
