@@ -202,7 +202,10 @@ class Player {
         for (let i = 0; i < window.nfts.length; i++) {
             // console.log("NFTSSS", window.nfts[i]);
             if(window.nfts[i]?.name === "Level 1 Badge"){
-                image(this.imgNft1, width/2 - this.r * 4  + (i + 1) * 30, 10, this.r * 2.5, this.r * 2.5);
+                let nft_text = "NFTS: ";
+                let nft_text_w = textWidth(bounty_text);
+                text(this.score, width/2 - nft_text_w, 25);
+                image(this.imgNft1, width/2  + (i + 1) * 30, 10, this.r * 2.5, this.r * 2.5);
             }
             
         }
@@ -212,7 +215,7 @@ class Player {
         fill(255)
         let bounty_text = window?.userProfile?.email + ": ";
         let bounty_text_w = textWidth(bounty_text);
-        let score = text(bounty_text, 50, 25);
+        // let score = text(bounty_text, 50, 25);
         push();
         fill(100, 255, 100);
         text(this.score, bounty_text_w + 50, 25);
