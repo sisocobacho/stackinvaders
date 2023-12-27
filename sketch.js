@@ -26,6 +26,7 @@ function preload() {
     shooterImage = loadImage('assets/player.png');
     upgradedShooterImage = loadImage('assets/redspaceship.png');
     debriImage = loadImage('assets/debri.png');
+    imgNft1 = loadImage('assets/nft1.png');
 }
 
 function setup() {
@@ -34,7 +35,7 @@ function setup() {
     canvas.style('display', 'block');
     canvas.parent('sketch-holder');
     invaders = new Invaders(alienImages, 4);
-    player = new Player(shooterImage);
+    player = new Player(shooterImage, imgNft1);
 
     // create the debris objects
     for (let i = 0; i < NUM_DEBRIS; i++) {

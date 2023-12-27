@@ -179,6 +179,9 @@ const mintNft = async function () {
 
             const receipt = await tx.wait();
             console.log('NFT minted successfully!', receipt);
+            // after succesfully mint get nfts
+            window.nfts = await window.getUserNfts();
+
             let nft = document.getElementById("nft");
             nft.innerHTML += `
               <div class="alert alert-success"> 

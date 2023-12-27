@@ -1,6 +1,7 @@
 class Player {
-    constructor(shooterImage) {
+    constructor(shooterImage, imgNft1) {
         this.image = shooterImage;
+        this.imgNft1 = imgNft1;
         this.x = width / 2;
         this.y = height - 30;
         this.isMovingLeft = false;
@@ -24,7 +25,6 @@ class Player {
     }
 
     showNft(tokenId) {
-        console.log("showing nft", tokenId)
         if (!this.nftShown[tokenId]) {
             this.nft = true;
             this.nftShown[tokenId] = true;
@@ -198,10 +198,13 @@ class Player {
         }
     }
 
-    drawNfts(t_width){
-        for (let i = 0; i < window.nfts; i++) {
-            console.log("NFTS!!!", window.nfts[i])
-            image(this.image, width/2 + (i + 1) * 30, 10, this.r, this.r);
+    drawNfts(){
+        for (let i = 0; i < window.nfts.length; i++) {
+            // console.log("NFTSSS", window.nfts[i]);
+            if(window.nfts[i]?.name === "Level 1 Badge"){
+                image(this.imgNft1, width/2 - this.r * 4  + (i + 1) * 30, 10, this.r * 2.5, this.r * 2.5);
+            }
+            
         }
     }
 
@@ -215,7 +218,7 @@ class Player {
         text(this.score, bounty_text_w + 50, 25);
         pop();
         this.drawLives();
-        this.drawNfts(bounty_text_w + textWidth(this.score) + 100);
+        this.drawNfts();
     }
 
     // helper functions
