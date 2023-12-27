@@ -171,7 +171,7 @@ const mintNft = async function () {
             const TOKEN_ID = getNextTokenId(contract);
 
             const currentGasPrice = await provider.getGasPrice();
-            const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('10', 'gwei'));
+            const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('80', 'gwei'));
 
             const tx = await contract.mint(userAddress, TOKEN_ID, {
                 gasPrice: adjustedGasPrice, // for pre-EIP-1559
