@@ -1,10 +1,11 @@
-[x] player hit effect
+[x] Player hit effect
 
 We created a hit effect for every time the player loses a live. The effect consits on flashing the screen red. 
 For that we created a function called drawHitEffect on Player.js this function will create the effect by drawing a red rectangle using alpha and blending mode. 
 The alpha variable will be reduce overtime when it becomes less or equal to cero the effect will be remove.
 We also modify the respawn by not repositioning the player we just do effect now. This also fixes the problem when responing and colliding with drebris right away. 
-[x] rearrange assets
+
+[x] Rearranging assets
 we create a folder for assets in order to be more organized, all images used will be in this folder.
 
 [x] Alien animation and graphics
@@ -25,13 +26,17 @@ We have a function in Player.js "explodeAlien" and another in sketch.js "drawPar
  The angle is going to be incremented by the randomly generated rotation rate. Then on the display function we rotate the image base on the angle.
 
 [] Change player nft logic
-
-[] show nfts acquire by player
-
 We going to request the nft instead of using the links. For that we change the getData function on login.js.
 We are going to request the nft passing the contract address and the nft id.
 
-[] Upgradeship base on points not pause
+[] show nfts acquire by player
+We are going to show the nfts that the players has on the top middle of the screen. 
+For that we have created a function on login.js called "getUserNfts", the result of this function is assign to the window object attribute nfts. 
+For obtaining this information we use "listNFTsByAccountAddress" from the api, we just need to pass the contract address and account address that we need to show nfts from.
+Then on the Player.js we are going to loop through window.nfts to show the nfts picture on the screen, this code is implemented in the "drawNfts" function.
+The nfts user informaction function "getUserNfts" is called when we are getting user information or when a nft is claimed.
 
+
+[] Upgradeship base on points not pause
 Now we are going to upgrade the ship base on points. For that we create twoo variables on Player.js "firstNftScore" and "secondNftScore". 
 When reach the scores represented on those varibales. A specific logic will be trigger in order to display nft or upgrade the ship. 
