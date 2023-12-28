@@ -38,11 +38,11 @@ function preload() {
     imgNft1 = loadImage('assets/nft1.png');
 
     //sounds
-    shootSound = loadSound('assets/shoot.wav');
-    gameOverSound = loadSound('assets/gameover.wav');
-    hitSound = loadSound('assets/hit.wav');
-    explodeAlienSound = loadSound('assets/alienexplode.wav');
-    game1sound = loadSound('assets/game1.wav');
+    shootSound = loadSound('assets/shoot.mp3');
+    gameOverSound = loadSound('assets/gameover.mp3');
+    hitSound = loadSound('assets/hit.mp3');
+    explodeAlienSound = loadSound('assets/alienexplode.mp3');
+    game1sound = loadSound('assets/game1.mp3');
     game1sound.setVolume(0.5);
 
     

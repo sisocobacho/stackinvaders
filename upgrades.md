@@ -20,7 +20,7 @@ If the result is more than half the rate an images will be shown else the other 
 ## Alien explotion
 
 For creating the effect of the alien exploding we are going to use a new class Particles on Particles.js that we pass a color, in this case green because the aliens are green.
-So when an alien is shot we create around 10 Particles that move in different random directions eventualy disappearing. 
+So when an alien is shot we create around 5 circles of ramdom sizes that move in different random directions eventualy disappearing. 
 We have a function in Player.js "explodeAlien" and another in sketch.js "drawParticles" that handle the creation and destruction of particles.
 
 ## Debris rotation and graphics
