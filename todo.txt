@@ -25,11 +25,11 @@ We have a function in Player.js "explodeAlien" and another in sketch.js "drawPar
  On Debris.js we now pass a new image and one sketch.js we load the new image. We also create a new variable for the angle and the rotation rate.
  The angle is going to be incremented by the randomly generated rotation rate. Then on the display function we rotate the image base on the angle.
 
-[] Change player nft logic
-We going to request the nft instead of using the links. For that we change the getData function on login.js.
-We are going to request the nft passing the contract address and the nft id.
+[x] Change player nft logic
+We going to use the api to request the nft instead of using static array of the links. For that we change the getData function on login.js.
+We are going to request the nft passing the contract address and the nft id using "getNFT" from the api this will give us all the information about the nft including name, description and img url.
 
-[] show nfts acquire by player
+[x] show nfts acquire by player
 We are going to show the nfts that the players has on the top middle of the screen. 
 For that we have created a function on login.js called "getUserNfts", the result of this function is assign to the window object attribute nfts. 
 For obtaining this information we use "listNFTsByAccountAddress" from the api, we just need to pass the contract address and account address that we need to show nfts from.
@@ -37,6 +37,6 @@ Then on the Player.js we are going to loop through window.nfts to show the nfts 
 The nfts user informaction function "getUserNfts" is called when we are getting user information or when a nft is claimed.
 
 
-[] Upgradeship base on points not pause
+[x] Upgradeship base on points not pause
 Now we are going to upgrade the ship base on points. For that we create twoo variables on Player.js "firstNftScore" and "secondNftScore". 
 When reach the scores represented on those varibales. A specific logic will be trigger in order to display nft or upgrade the ship. 

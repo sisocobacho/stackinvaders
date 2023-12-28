@@ -48,27 +48,27 @@ async function getData(id) {
     try {
         let nft = document.getElementById("nft");
 
-        const nftDetails = {
-            '1': {
-                image: 'https://bafkreigugjgtcvkwg7ym7uk5ic65wmtkmbngonaj3twzl3nttuj5w7zjku.ipfs.nftstorage.link/',
-                name: 'Level 1 Badge',
-                description: 'This NFT represents your first accomplishment on StackUp Invaders.'
-            },
-            '2': {
-                image: 'https://bafkreifxbz53txersuyqok75dmdhyrnfkascznytyvum2i25bunii5dih4.ipfs.nftstorage.link/',
-                name: 'Level 2 Badge',
-                description: 'This NFT represents your second accomplishment on StackUp Invaders which grants you an upgraded spaceship.'
-            }
-        };
+        // const nftDetails = {
+        //     '1': {
+        //         image: 'https://bafkreigugjgtcvkwg7ym7uk5ic65wmtkmbngonaj3twzl3nttuj5w7zjku.ipfs.nftstorage.link/',
+        //         name: 'Level 1 Badge',
+        //         description: 'This NFT represents your first accomplishment on StackUp Invaders.'
+        //     },
+        //     '2': {
+        //         image: 'https://bafkreifxbz53txersuyqok75dmdhyrnfkascznytyvum2i25bunii5dih4.ipfs.nftstorage.link/',
+        //         name: 'Level 2 Badge',
+        //         description: 'This NFT represents your second accomplishment on StackUp Invaders which grants you an upgraded spaceship.'
+        //     }
+        // };
 
-        // const response = await client.getNFT({
-        //     chainName: 'imtbl-zkevm-testnet',
-        //     contractAddress: CONTRACT_ADDRESS,
-        //     tokenId: id,
-        // });
+        const response = await client.getNFT({
+            chainName: 'imtbl-zkevm-testnet',
+            contractAddress: CONTRACT_ADDRESS,
+            tokenId: id,
+        });
 
-        // const details = response.result;
-        const details = nftDetails;
+        const details = response.result;
+        // const details = nftDetails;
 
         if (!details) {
             throw new Error("Invalid Token ID");
