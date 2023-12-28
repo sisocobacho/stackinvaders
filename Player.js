@@ -211,7 +211,7 @@ class Player {
     drawNfts(){
         for (let i = 0; i < window.nfts.length; i++) {
             // console.log("NFTSSS", window.nfts[i]);
-            if(window.nfts[i]?.name === "Level 1 Badge"){
+            if(window.nfts[i]?.name === "Level 1 Badge" && window.nfts[i]?.contract_address === '0xdeab4e436bc7cc9a10fa1a55a22455e080970868'){
                 image(this.imgNft1, width/2 - this.r * 4  + (i + 1) * 30, 10, this.r * 2.5, this.r * 2.5);
             }
             

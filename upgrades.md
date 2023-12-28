@@ -45,7 +45,7 @@ We are going to request the nft passing the contract address and the nft id usin
 We are going to show the nfts that the players has on the top middle of the screen. 
 For that we have created a function on login.js called "getUserNfts", the result of this function is assign to the window object attribute nfts. 
 For obtaining this information we use "listNFTsByAccountAddress" from the api, we just need to pass the contract address and account address that we need to show nfts from.
-Then on the Player.js we are going to loop through window.nfts to show the nfts picture on the screen, this code is implemented in the "drawNfts" function.
+Then on the Player.js we are going to loop through window.nfts to show the nfts picture on the screen, this code is implemented in the "drawNfts" function. We only show the nfts that belong to our contract and the name is "Level 1 Badge" excluding other nfts that the user may have.
 The nfts user informaction function "getUserNfts" is called when we are getting user information or when a nft is claimed, this will update the array window.nfts and the nfts will be shown.
 
 ## GAME SOUND
