@@ -12,13 +12,22 @@ let resumeButton;
 let upgradedShooterImage;
 let alienImages = [];
 let particles = [];
+let shootSound;
+let gameOverSound;
+let gamoOverPlayed = false;
+let hitSound;
+let explodeAlienSound;
+let lastShotTime = 0;
+let game1sound;
+let game2sound;
+const shootingDelay = 500;
 
 const NUM_DEBRIS = 5; // number of space debris
 
 function loadAlienImages() {
     for (let i = 1; i < 3; i++) {
         alienImages.push(loadImage(`assets/greenalien-${i}.png`));
-      }
+    }
 }
 
 function preload() {
@@ -27,6 +36,16 @@ function preload() {
     upgradedShooterImage = loadImage('assets/redspaceship.png');
     debriImage = loadImage('assets/debri.png');
     imgNft1 = loadImage('assets/nft1.png');
+
+    //sounds
+    shootSound = loadSound('assets/shoot.wav');
+    gameOverSound = loadSound('assets/gameover.wav');
+    hitSound = loadSound('assets/hit.wav');
+    explodeAlienSound = loadSound('assets/alienexplode.wav');
+    game1sound = loadSound('assets/game1.wav');
+    game1sound.setVolume(0.5);
+
+    
 }
 
 function setup() {
@@ -35,7 +54,7 @@ function setup() {
     canvas.style('display', 'block');
     canvas.parent('sketch-holder');
     invaders = new Invaders(alienImages, 4);
-    player = new Player(shooterImage, imgNft1);
+    player = new Player(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound);
 
     // create the debris objects
     for (let i = 0; i < NUM_DEBRIS; i++) {
@@ -49,6 +68,9 @@ function setup() {
     resumeButton.position(width / 2 - 40, height / 2 + 220);
     resumeButton.mousePressed(resumeGame);
     resumeButton.hide();
+
+    // game sound
+    game1sound.loop();
 }
 
 function showGameOver() {
@@ -99,20 +121,25 @@ function resumeGame() {
     nft.innerHTML = ""
 }
 
-function drawParticles(){
+function drawParticles() {
     for (let i = particles.length - 1; i >= 0; i--) {
         particles[i].update();
         particles[i].display();
-        
+
         // Remove particles that are off-screen
         if (particles[i].isFinished()) {
-          particles.splice(i, 1);
+            particles.splice(i, 1);
         }
-      }
+    }
 }
 
 function draw() {
     if (gameOver) {
+        if (gamoOverPlayed === false) {
+            gameOverSound.play()
+            gamoOverPlayed = true;
+        }
+
         showGameOver();
     } else if (window?.userProfile?.email) {
         if (!player.gamePaused) {
@@ -149,6 +176,7 @@ function draw() {
 function mousePressed() {
     if (gameOver === true) {
         gameOver = false;
+        gamoOverPlayed = false;
         setup();
     }
 }
@@ -159,7 +187,13 @@ function keyPressed() {
     } else if (keyCode === LEFT_ARROW || keyCode == 90) {
         player.moveLeft();
     } else if (keyCode === 32) {
+
         player.shoot();
+        const currentTime = millis();
+        if (currentTime - lastShotTime >= shootingDelay) {
+            shootSound.play();
+            lastShotTime = currentTime;
+        }
     }
 
     if (keyCode === UP_ARROW) {

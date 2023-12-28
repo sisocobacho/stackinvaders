@@ -8,6 +8,7 @@ The alpha variable will be reduce overtime when it becomes less or equal to cero
 We also modify the respawn by not repositioning the player we just do effect now. This also fixes the problem when responing and colliding with drebris right away. 
 
 ## Rearranging assets
+
 we create a folder for assets in order to be more organized, all images used will be in this folder.
 
 ## Alien animation and graphics
@@ -17,6 +18,7 @@ Then this images will be schown depending on the current rate.
 If the result is more than half the rate an images will be shown else the other image. This functionality is in implemented on Alien.js the draw function. 
 
 ## Alien explotion
+
 For creating the effect of the alien exploding we are going to use a new class Particles on Particles.js that we pass a color, in this case green because the aliens are green.
 So when an alien is shot we create around 10 Particles that move in different random directions eventualy disappearing. 
 We have a function in Player.js "explodeAlien" and another in sketch.js "drawParticles" that handle the creation and destruction of particles.
@@ -40,4 +42,7 @@ For that we have created a function on login.js called "getUserNfts", the result
 For obtaining this information we use "listNFTsByAccountAddress" from the api, we just need to pass the contract address and account address that we need to show nfts from.
 Then on the Player.js we are going to loop through window.nfts to show the nfts picture on the screen, this code is implemented in the "drawNfts" function.
 The nfts user informaction function "getUserNfts" is called when we are getting user information or when a nft is claimed, this will update the array window.nfts and the nfts will be shown.
+
+## GAME SOUND
+We are going to add sound effects and music to the game. We added the p5.sound library to index.html. We load the sound in the preload function on sketch.js and play the sounds depending on the differents action in the game like shooting, taking damage, enemies exploding and the game music. The last one it's played on a loop. In order to prevent lag we also implement a delay for playing the sound of shooting and enemies exploding, this types of sounds can be played simultaneously so we use a time delay limiting the number of concurrent sound effects. The implementation ca be found on Player.js explodeAliens function and sketch.js spacebar key press.
 

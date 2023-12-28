@@ -1,7 +1,10 @@
 class Player {
-    constructor(shooterImage, imgNft1) {
+    constructor(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound) {
         this.image = shooterImage;
         this.imgNft1 = imgNft1;
+        this.hitSound = hitSound;
+        this.explodeAlienSound = explodeAlienSound;
+        this.shootSound = shootSound;
         this.x = width / 2;
         this.y = height - 30;
         this.isMovingLeft = false;
@@ -20,8 +23,9 @@ class Player {
         this.resumeCount = 0
         this.hitAlpha = 255;
         this.hitEffect = false;
-        this.firstNftScore = 50;
-        this.secondNftScore = 100;
+        this.firstNftScore = 200;
+        this.secondNftScore = 400;
+        this.lastExplodeTime = 0;
     }
 
     showNft(tokenId) {
@@ -65,7 +69,13 @@ class Player {
         this.updateBullets();
     }
     explodeAliens(i){
-        for (let p = 0; p < 10; p++) {
+        const currentTime = millis();
+        if (currentTime - this.lastExplodeTime >= 300) {
+            this.explodeAlienSound.play();
+            this.lastExplodeTime = currentTime;
+        }
+        
+        for (let p = 0; p < 5; p++) {
             particles.push(new Particle(this.bullets[i].x, this.bullets[i].y, color(0, 255, 0)))
         }
     }
@@ -121,7 +131,7 @@ class Player {
         const bulletOffset = 5;
         if (this.bullets.length < this.maxBullets) {
             this.bullets.push(new PlayerBullet(this.x + this.r, this.y, this.playerIsUp()));
-
+            // this.shootSound.play();
             if (this.maxBullets > 2) {
                 this.bullets.push(new PlayerBullet(this.x - this.r + bulletOffset * 2, this.y, this.playerIsUp()))
             }
@@ -143,10 +153,10 @@ class Player {
             this.pauseGame('2');
         }
         if (this.hitEffect == true) {
-            console.log("hitting")
+            // console.log("hitting")
             this.drawHitEffect();
         } else {
-            console.log("not hit")
+            // console.log("not hit")
         }
     }
 
@@ -226,16 +236,13 @@ class Player {
         return invaders.checkCollision(bullet.x, bullet.y);
     }
 
-    test(){
-        console.log("testing")
-    }
-
     playerIsUp() {
         return this.y > invaders.aliens[0].y;
     }
 
     loseLife() {
         if (this.lives > 0) {
+            this.hitSound.play();
             this.respawn();
         }
     }
