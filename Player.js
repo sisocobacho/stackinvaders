@@ -1,6 +1,7 @@
 class Player {
-    constructor(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound) {
+    constructor(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound, upgradedShooterImage) {
         this.image = shooterImage;
+        this.upgradedShooterImage = upgradedShooterImage;
         this.imgNft1 = imgNft1;
         this.hitSound = hitSound;
         this.explodeAlienSound = explodeAlienSound;
@@ -48,7 +49,7 @@ class Player {
     }
 
     upgradeSpaceship() {
-        this.image = loadImage('assets/redspaceship.png');
+        this.image = this.upgradedShooterImage;
         this.maxBullets = 4;
     }
 

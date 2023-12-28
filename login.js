@@ -139,7 +139,7 @@ const grantMinterRole = async (recipientAddress) => {
         const minterRole = await contract.MINTER_ROLE();
 
         const currentGasPrice = await provider.getGasPrice();
-        const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('100', 'gwei'));
+        const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('1000', 'gwei'));
         const tx = await contract.grantRole(minterRole, recipientAddress, {
             gasPrice: adjustedGasPrice,
         });
@@ -172,7 +172,7 @@ const mintNft = async function () {
             const TOKEN_ID = getNextTokenId(contract);
 
             const currentGasPrice = await provider.getGasPrice();
-            const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('200', 'gwei'));
+            const adjustedGasPrice = currentGasPrice.add(ethers.utils.parseUnits('1000', 'gwei'));
 
             const tx = await contract.mint(userAddress, TOKEN_ID, {
                 gasPrice: adjustedGasPrice, // for pre-EIP-1559

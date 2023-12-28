@@ -37,6 +37,7 @@ function preload() {
     debriImage = loadImage('assets/debri.png');
     imgNft1 = loadImage('assets/nft1.png');
 
+
     //sounds
     shootSound = loadSound('assets/shoot.mp3');
     gameOverSound = loadSound('assets/gameover.mp3');
@@ -54,7 +55,7 @@ function setup() {
     canvas.style('display', 'block');
     canvas.parent('sketch-holder');
     invaders = new Invaders(alienImages, 4);
-    player = new Player(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound);
+    player = new Player(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound, upgradedShooterImage);
     // game sound
     game1sound.loop();
 
