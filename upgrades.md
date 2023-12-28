@@ -23,7 +23,7 @@ We have a function in Player.js "explodeAlien" and another in sketch.js "drawPar
 
 ## Debris rotation and graphics
  We are going to assing a new image to the debris and we are going to rotate the debris while its moving.
- On Debris.js we now pass a new image and one sketch.js we load the new image. We also create a new variable for the angle and the rotation rate.
+ On Debris.js we now pass a new image and on sketch.js we load the new image. We also create a new variable for the angle and the rotation rate.
  The angle is going to be incremented by the randomly generated rotation rate. Then on the display function we rotate the image base on the angle.
 
 ## Upgradeship base on points not pause
@@ -39,5 +39,5 @@ We are going to show the nfts that the players has on the top middle of the scre
 For that we have created a function on login.js called "getUserNfts", the result of this function is assign to the window object attribute nfts. 
 For obtaining this information we use "listNFTsByAccountAddress" from the api, we just need to pass the contract address and account address that we need to show nfts from.
 Then on the Player.js we are going to loop through window.nfts to show the nfts picture on the screen, this code is implemented in the "drawNfts" function.
-The nfts user informaction function "getUserNfts" is called when we are getting user information or when a nft is claimed.
+The nfts user informaction function "getUserNfts" is called when we are getting user information or when a nft is claimed, this will update the array window.nfts and the nfts will be shown.
 
