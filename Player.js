@@ -148,7 +148,7 @@ class Player {
             this.gamePaused = true;
             this.pauseGame('1')
         }
-        else if (this.score == 100 && !this.nftShown['2']) {
+        else if (this.score == this.secondNftScore && !this.nftShown['2']) {
             this.gamePaused = true;
             this.pauseGame('2');
         }

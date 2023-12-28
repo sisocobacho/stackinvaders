@@ -55,6 +55,8 @@ function setup() {
     canvas.parent('sketch-holder');
     invaders = new Invaders(alienImages, 4);
     player = new Player(shooterImage, imgNft1, hitSound, explodeAlienSound, shootSound);
+    // game sound
+    game1sound.loop();
 
     // create the debris objects
     for (let i = 0; i < NUM_DEBRIS; i++) {
@@ -69,8 +71,7 @@ function setup() {
     resumeButton.mousePressed(resumeGame);
     resumeButton.hide();
 
-    // game sound
-    game1sound.loop();
+    
 }
 
 function showGameOver() {
