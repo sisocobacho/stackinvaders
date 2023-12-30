@@ -52,3 +52,7 @@ The nfts user informaction function "getUserNfts" is called when we are getting 
 
 We are going to add sound effects and music to the game. We added the p5.sound library to index.html. We load the sound in the preload function on sketch.js and play the sounds depending on the differents action in the game like shooting, taking damage, enemies exploding and the game music. The last one it's played on a loop. In order to prevent lag we also implement a delay for playing the sound of shooting and enemies exploding, this types of sounds can be played simultaneously so we use a time delay limiting the number of concurrent sound effects. The implementation ca be found on Player.js explodeAliens function and sketch.js spacebar key press.
 
+## Social Media
+- Discord: Qende
+- X: @OOcobacho
+
